@@ -1,8 +1,18 @@
 <?php
 
 class Route {
+    private $controller = "Pages";
+
     public function __construct() {
-        $this->url();
+        $url = $this->url() ? $this->url() : [0];
+
+        if (file_exists('../app/COntrollers/' . ucwords($url[0]) . '.php')) {
+            $this->controller = ucwords($url[0]);
+            unset($url);
+        }
+
+        require_once '../app/Controllers/' . $this->controller . '.php';
+        $this->controller = new $this->controller;                  // Instantiate the controller
     }
 
     /// @brief Recover and Filter URL
