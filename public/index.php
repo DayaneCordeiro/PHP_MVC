@@ -1,3 +1,8 @@
+<?php
+
+include '../app/Libraries/Route.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,8 @@
     <title>PHP MVC</title>
 </head>
 <body>
-    
+    <?php
+        $routes = new Route();
+    ?>
 </body>
 </html>
