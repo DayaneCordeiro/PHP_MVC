@@ -1,6 +1,7 @@
 <?php
 
 include '../app/Libraries/Route.php';
+include '../app/Libraries/Controller.php';
 ?>
 
 <!DOCTYPE html>
