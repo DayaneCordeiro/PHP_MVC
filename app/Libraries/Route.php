@@ -2,6 +2,7 @@
 
 class Route {
     private $controller = "Pages";
+    private $method = 'index';
 
     public function __construct() {
         $url = $this->url() ? $this->url() : [0];
@@ -13,6 +14,13 @@ class Route {
 
         require_once '../app/Controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;                  // Instantiate the controller
+
+        if (isset($url[1])) {
+            if (method_exists($this->controller, $url[1])) {
+                $this->method = $url[1];
+                unset($url[1]);
+            }
+        }
     }
 
     /// @brief Recover and Filter URL
