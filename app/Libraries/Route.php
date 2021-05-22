@@ -2,7 +2,8 @@
 
 class Route {
     private $controller = "Pages";
-    private $method = 'index';
+    private $method     = 'index';
+    private $params     = array();
 
     public function __construct() {
         $url = $this->url() ? $this->url() : [0];
@@ -21,6 +22,10 @@ class Route {
                 unset($url[1]);
             }
         }
+
+        $this->params = $url ? array_values($url) : [];
+
+        call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
     /// @brief Recover and Filter URL
