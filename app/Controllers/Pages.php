@@ -3,7 +3,11 @@
 class Pages extends Controller {
     public function index() {
         try {
-            $this->view('pages/home');
+            $data = array(
+                'title' => 'Homepage'
+            );
+
+            $this->view('pages/home', $data);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
@@ -11,6 +15,14 @@ class Pages extends Controller {
     }
 
     public function about() {
-        // to do
+        try {
+            $data = array(
+                'title' => 'About Us'
+            );
+
+            $this->view('pages/about', $data);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
     }
 }
