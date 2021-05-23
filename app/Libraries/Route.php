@@ -8,7 +8,7 @@ class Route {
     public function __construct() {
         $url = $this->url() ? $this->url() : [0];
 
-        if (file_exists('../app/COntrollers/' . ucwords($url[0]) . '.php')) {
+        if (file_exists('../app/Controllers/' . ucwords($url[0]) . '.php')) {
             $this->controller = ucwords($url[0]);
             unset($url);
         }
