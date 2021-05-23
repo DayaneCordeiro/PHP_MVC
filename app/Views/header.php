@@ -12,7 +12,7 @@
                         <a class="nav-link" href="<?=URL?>" data-tooltip="tooltip" title="Homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=URL?>/pages/home" data-tooltip="tooltip" title="About Us"><?=URL?>/pages/home</a>
+                        <a class="nav-link" href="<?=URL?>/pages/home" data-tooltip="tooltip" title="About Us">About Us</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
