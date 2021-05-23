@@ -24,7 +24,9 @@ include '../app/Libraries/Controller.php';
 </head>
 <body>
     <?php
+        include APP . '/Views/header.php';
         $routes = new Route();
+        include APP . '/Views/footer.php';
     ?>
     <script src="<?=URL?>/public/js/scripts.js"></script>
 </body>
