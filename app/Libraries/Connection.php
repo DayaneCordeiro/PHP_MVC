@@ -70,6 +70,6 @@ class Connection {
     }
 
     public function lastInsertId() {
-        return $this->stmt->lastInsertId();
+        return $this->dbh->lastInsertId();
     }
 }

@@ -7,6 +7,19 @@ include '../app/Libraries/Connection.php';
 
 $conn = new Connection;
 
+$id_user = "10";
+$title   = "Post Title";
+$text    = "Post text";
+
+$conn->query("INSERT INTO posts (id_user, title, text) VALUES (?, ?, ?)");
+$conn->bind(1, $id_user);
+$conn->bind(2, $title);
+$conn->bind(3, $text);
+
+$conn->execute();
+echo '<hr> Rows: ' . $conn->rowsCount();
+echo '<hr> Last ID: ' . $conn->lastInsertId();
+
 ?>
 
 <!DOCTYPE html>
