@@ -3,6 +3,10 @@
 include '../app/config.php';
 include '../app/Libraries/Route.php';
 include '../app/Libraries/Controller.php';
+include '../app/Libraries/Connection.php';
+
+$conn = new Connection;
+
 ?>
 
 <!DOCTYPE html>
