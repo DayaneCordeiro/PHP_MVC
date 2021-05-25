@@ -7,18 +7,28 @@ include '../app/Libraries/Connection.php';
 
 $conn = new Connection;
 
-$id_user = "10";
-$title   = "Post Title";
-$text    = "Post text";
+// $id_user = "5";
+// $title   = "Post Title";
+// $text    = "Post text";
 
-$conn->query("INSERT INTO posts (id_user, title, text) VALUES (?, ?, ?)");
-$conn->bind(1, $id_user);
-$conn->bind(2, $title);
-$conn->bind(3, $text);
+// $conn->query("INSERT INTO posts (id_user, title, text) VALUES (?, ?, ?)");
+// $conn->bind(1, $id_user);
+// $conn->bind(2, $title);
+// $conn->bind(3, $text);
+
+// $conn->execute();
+// echo '<hr> Rows: ' . $conn->rowsCount();
+// echo '<hr> Last ID: ' . $conn->lastInsertId();
+
+$id      = 1;
+$title   = "Update with MySQL";
+
+$conn->query("UPDATE posts SET title = ? WHERE id = ?");
+$conn->bind(1, $title);
+$conn->bind(2, $id);
 
 $conn->execute();
 echo '<hr> Rows: ' . $conn->rowsCount();
-echo '<hr> Last ID: ' . $conn->lastInsertId();
 
 ?>
 
