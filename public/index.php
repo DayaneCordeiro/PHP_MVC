@@ -20,12 +20,20 @@ $conn = new Connection;
 // echo '<hr> Rows: ' . $conn->rowsCount();
 // echo '<hr> Last ID: ' . $conn->lastInsertId();
 
-$id      = 1;
-$title   = "Update with MySQL";
+// $id      = 1;
+// $title   = "Update with MySQL";
 
-$conn->query("UPDATE posts SET title = ? WHERE id = ?");
-$conn->bind(1, $title);
-$conn->bind(2, $id);
+// $conn->query("UPDATE posts SET title = ? WHERE id = ?");
+// $conn->bind(1, $title);
+// $conn->bind(2, $id);
+
+// $conn->execute();
+// echo '<hr> Rows: ' . $conn->rowsCount();
+
+$id      = 2;
+
+$conn->query("DELETE FROM posts WHERE id = ?");
+$conn->bind(1, $id);
 
 $conn->execute();
 echo '<hr> Rows: ' . $conn->rowsCount();
