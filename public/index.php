@@ -30,13 +30,26 @@ $conn = new Connection;
 // $conn->execute();
 // echo '<hr> Rows: ' . $conn->rowsCount();
 
+// $id      = 2;
+
+// $conn->query("DELETE FROM posts WHERE id = ?");
+// $conn->bind(1, $id);
+
+// $conn->execute();
+// echo '<hr> Rows: ' . $conn->rowsCount();
+
 $id      = 2;
 
-$conn->query("DELETE FROM posts WHERE id = ?");
-$conn->bind(1, $id);
+$conn->query("SELECT * FROM posts #WHERE id = ?");
+//$conn->bind(1, $id);
 
-$conn->execute();
+// $conn->execute();
 echo '<hr> Rows: ' . $conn->rowsCount();
+
+foreach ($conn->fetchAll() as $post) {
+    echo $post->title;
+    echo '<hr>';
+}
 
 ?>
 
