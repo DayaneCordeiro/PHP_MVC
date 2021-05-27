@@ -1,55 +1,9 @@
 <?php
 
-include '../app/config.php';
-include '../app/Libraries/Route.php';
-include '../app/Libraries/Controller.php';
-include '../app/Libraries/Connection.php';
+include './../app/config.php';
+include './../app/autoload.php';
 
 $conn = new Connection;
-
-// $id_user = "5";
-// $title   = "Post Title";
-// $text    = "Post text";
-
-// $conn->query("INSERT INTO posts (id_user, title, text) VALUES (?, ?, ?)");
-// $conn->bind(1, $id_user);
-// $conn->bind(2, $title);
-// $conn->bind(3, $text);
-
-// $conn->execute();
-// echo '<hr> Rows: ' . $conn->rowsCount();
-// echo '<hr> Last ID: ' . $conn->lastInsertId();
-
-// $id      = 1;
-// $title   = "Update with MySQL";
-
-// $conn->query("UPDATE posts SET title = ? WHERE id = ?");
-// $conn->bind(1, $title);
-// $conn->bind(2, $id);
-
-// $conn->execute();
-// echo '<hr> Rows: ' . $conn->rowsCount();
-
-// $id      = 2;
-
-// $conn->query("DELETE FROM posts WHERE id = ?");
-// $conn->bind(1, $id);
-
-// $conn->execute();
-// echo '<hr> Rows: ' . $conn->rowsCount();
-
-$id      = 2;
-
-$conn->query("SELECT * FROM posts #WHERE id = ?");
-//$conn->bind(1, $id);
-
-// $conn->execute();
-echo '<hr> Rows: ' . $conn->rowsCount();
-
-foreach ($conn->fetchAll() as $post) {
-    echo $post->title;
-    echo '<hr>';
-}
 
 ?>
 
