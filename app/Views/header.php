@@ -12,11 +12,11 @@
                         <a class="nav-link" href="<?=URL?>" data-tooltip="tooltip" title="Homepage">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?=URL?>/pages/home" data-tooltip="tooltip" title="About Us">About Us</a>
+                        <a class="nav-link" href="<?=URL?>/pages/about" data-tooltip="tooltip" title="About Us">About Us</a>
                     </li>
                 </ul>
                 <span class="navbar-text">
-                    <a class="btn btn-info" href="#" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
+                    <a class="btn btn-info" href="<?=URL?>/users/create" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
                     <a class="btn btn-info" href="#" data-tooltip="tooltip" title="Already have an account? Login">Login</a>
                 </span>
             </div>
