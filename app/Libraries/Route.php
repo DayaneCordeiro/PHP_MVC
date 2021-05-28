@@ -10,7 +10,7 @@ class Route {
 
         if (file_exists('../app/Controllers/' . ucwords($url[0]) . '.php')) {
             $this->controller = ucwords($url[0]);
-            unset($url);
+            unset($url[0]);
         }
 
         require_once '../app/Controllers/' . $this->controller . '.php';

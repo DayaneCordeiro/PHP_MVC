@@ -1,7 +1,7 @@
 <div class="container my-3">
     <div class="card">
         <div class="card-body">
-            <h1 class="my-3"><?= $dados['tituloPagina'] ?></h1>
+            <h1 class="my-3"><?= $data['title'] ?></h1>
 
             <p><b>What will you learn?</b></p>
 
