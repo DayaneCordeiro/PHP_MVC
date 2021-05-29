@@ -6,22 +6,22 @@
         <div class="card-body">
             <p class="card-text"><small>Fill out the form below to register.</small></p>
 
-            <form name="form_user_register" method="POST" action="" class="mt-4">
+            <form name="form_user_register" method="POST" action="<?= URL ?>/users/register" class="mt-4">
                 <div class="form-group">
                     <label for="name">Name: <sup class="text-danger">*</sup></label>
-                    <input type="text" name="name" class="form-control" required>
+                    <input type="text" name="name" value="<?= $data['name'] ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="email">E-mail: <sup class="text-danger">*</sup></label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="email" value="<?= $data['email'] ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password: <sup class="text-danger">*</sup></label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" value="<?= $data['password'] ?>" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="confirm_password">Confirm the Password: <sup class="text-danger">*</sup></label>
-                    <input type="password" name="confirm_password" class="form-control" required>
+                    <input type="password" name="confirm_password" value="<?= $data['confirm_password'] ?>" class="form-control" required>
                 </div>
 
                 <divc class="row">
