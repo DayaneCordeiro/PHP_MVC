@@ -32,40 +32,44 @@ class Users extends Controller
                 if (empty($form['confirm_password']))
                     $data['confirm_password_error'] = "Password confirmation is required.";
             } else {
-                // VALIDATING E-MAIL
-                $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-
-                if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                    $data['email_error'] = 'Invalid e-mail.';
+                if (!Validation::validateString($form['name'])) {
+                    $data["name_error"] = 'Name must contain only letters.';
                 } else {
-                    // VALIDATING PASSWORD
-                    $number       = preg_match('@[0-9]@', $data['password']);
-                    $uppercase    = preg_match('@[A-Z]@', $data['password']);
-                    $lowercase    = preg_match('@[a-z]@', $data['password']);
-                    $specialChars = preg_match('@[^\w]@', $data['password']);
+                    // VALIDATING E-MAIL
+                    $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 
-                    if (strlen($data['password']) < 8) {
-                        $data['password_error'] = "Password must be at least 8 characters in length.<br>";
-                    }
-                    if (!$number) {
-                        $data['password_error'] .= "Password must contain at least one number.<br>";
-                    }
-                    if (!$uppercase) {
-                        $data['password_error'] .= "Password must contain at least one upper case letter.<br>";
-                    }
-                    if (!$lowercase) {
-                        $data['password_error'] .= "Password must contain at least one lower case letter.<br>";
-                    }
-                    if (!$specialChars) {
-                        $data['password_error'] .= "Password must contain at least one special character.";
-                    }
-                    if (strlen($data['password']) >= 8 && $number && $uppercase && $lowercase && $specialChars) {
-                        // VALIDATING PASSWORD CONFIRMATION
-                        if (!($form['confirm_password'] === $form['password'])) {
-                            $data['confirm_password_error'] = "Password confirmation must be equals password.";
-                        } else {
-                            // EVERYTHING OK
-                            echo "prossiga";
+                    if (!Validation::validateEmail($data['email'])) {
+                        $data['email_error'] = 'Invalid e-mail.';
+                    } else {
+                        // VALIDATING PASSWORD
+                        $number       = preg_match('@[0-9]@', $data['password']);
+                        $uppercase    = preg_match('@[A-Z]@', $data['password']);
+                        $lowercase    = preg_match('@[a-z]@', $data['password']);
+                        $specialChars = preg_match('@[^\w]@', $data['password']);
+
+                        if (strlen($data['password']) < 8) {
+                            $data['password_error'] = "Password must be at least 8 characters in length.<br>";
+                        }
+                        if (!$number) {
+                            $data['password_error'] .= "Password must contain at least one number.<br>";
+                        }
+                        if (!$uppercase) {
+                            $data['password_error'] .= "Password must contain at least one upper case letter.<br>";
+                        }
+                        if (!$lowercase) {
+                            $data['password_error'] .= "Password must contain at least one lower case letter.<br>";
+                        }
+                        if (!$specialChars) {
+                            $data['password_error'] .= "Password must contain at least one special character.";
+                        }
+                        if (strlen($data['password']) >= 8 && $number && $uppercase && $lowercase && $specialChars) {
+                            // VALIDATING PASSWORD CONFIRMATION
+                            if (!($form['confirm_password'] === $form['password'])) {
+                                $data['confirm_password_error'] = "Password confirmation must be equals password.";
+                            } else {
+                                // EVERYTHING OK
+                                echo "prossiga";
+                            }
                         }
                     }
                 }
