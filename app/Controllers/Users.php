@@ -67,6 +67,7 @@ class Users extends Controller
                             if (!($form['confirm_password'] === $form['password'])) {
                                 $data['confirm_password_error'] = "Password confirmation must be equals password.";
                             } else {
+                                $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
                                 // EVERYTHING OK
                                 echo "prossiga";
                             }
