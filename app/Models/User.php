@@ -19,4 +19,15 @@ class User {
         else
             return false;
     }
+
+    public function validateEmail($email) {
+        $this->conn->query("SELECT email FROM users WHERE email = ?");
+
+        $this->conn->bind(1, $email);
+
+        if ($this->conn->fetch())
+            return true;
+        else
+            return true;
+    }
 }

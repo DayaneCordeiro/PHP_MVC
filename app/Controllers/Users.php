@@ -41,7 +41,10 @@ class Users extends Controller
                     // VALIDATING E-MAIL
                     $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 
-                    if (!Validation::validateEmail($data['email'])) {
+                    if (!$this->userModel->validateEmail($data['email'])) {
+                        $data['email_error'] = 'E-mail already registered.';
+                    }
+                    else if (!Validation::validateEmail($data['email'])) {
                         $data['email_error'] = 'Invalid e-mail.';
                     } else {
                         // VALIDATING PASSWORD
