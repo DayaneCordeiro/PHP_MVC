@@ -2,6 +2,9 @@
 
 class Users extends Controller
 {
+    public function __construct() {
+        $this->userModel = $this->model('User');
+    }
 
     public function register()
     {
@@ -69,7 +72,10 @@ class Users extends Controller
                             } else {
                                 $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
                                 // EVERYTHING OK
-                                echo "prossiga";
+                                if ($this->userModel->store($data)) 
+                                    echo "User registered successfully.";
+                                else
+                                    throw new Exception("Error registering user.");
                             }
                         }
                     }
