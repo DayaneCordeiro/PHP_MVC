@@ -2,8 +2,7 @@
 
 class Users extends Controller
 {
-    public function __construct()
-    {
+    public function __construct() {
         $this->userModel = $this->model('User');
     }
 
@@ -122,16 +121,15 @@ class Users extends Controller
                     $data['email_error'] = 'Invalid e-mail.';
                 } else {
                     // EVERYTHING OK
-                    $validateLogin = $this->userModel->validateLogin($data);
+                    $user = $this->userModel->validateLogin($data);
 
-                    if ($validateLogin)
+                    if ($user) {
                         echo "OK";
-                    else
+                        var_dump($user);
+                    } else
                         echo "Invalid email or password.";
                 }
             }
-
-            var_dump($data);
         } else {
             $data = array(
                 "email"            => "",
