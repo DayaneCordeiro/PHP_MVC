@@ -2,7 +2,8 @@
 
 class Users extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->userModel = $this->model('User');
     }
 
@@ -43,8 +44,7 @@ class Users extends Controller
 
                     if (!$this->userModel->validateEmail($data['email'])) {
                         $data['email_error'] = 'E-mail already registered.';
-                    }
-                    else if (!Validation::validateEmail($data['email'])) {
+                    } else if (!Validation::validateEmail($data['email'])) {
                         $data['email_error'] = 'Invalid e-mail.';
                     } else {
                         // VALIDATING PASSWORD
@@ -75,7 +75,7 @@ class Users extends Controller
                             } else {
                                 $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
                                 // EVERYTHING OK
-                                if ($this->userModel->store($data)) 
+                                if ($this->userModel->store($data))
                                     echo "User registered successfully.";
                                 else
                                     throw new Exception("Error registering user.");
@@ -84,8 +84,6 @@ class Users extends Controller
                     }
                 }
             }
-
-            var_dump($data);
         } else {
             $data = array(
                 "name"             => "",
@@ -96,5 +94,46 @@ class Users extends Controller
         }
 
         $this->view('users/register', $data);
+    }
+
+    public function login()
+    {
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        if (isset($form)) {
+            $data = array(
+                "email"            => trim($form['email']),
+                "password"         => trim($form['password'])
+            );
+
+            if (in_array("", $form)) {
+                // VALIDATING E-MAIL
+                if (empty($form['email']))
+                    $data['email_error'] = 'E-mail is required.';
+
+                // VALIDATING PASSWORD
+                if (empty($form['password']))
+                    $data['password_error'] = 'Password is required.';
+            } else {
+                // VALIDATING E-MAIL
+                $data['email'] = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
+
+                if (!Validation::validateEmail($data['email'])) {
+                    $data['email_error'] = 'Invalid e-mail.';
+                } else {
+                    // EVERYTHING OK
+                    echo 'login';
+                }
+            }
+
+            var_dump($data);
+        } else {
+            $data = array(
+                "email"            => "",
+                "password"         => ""
+            );
+        }
+
+        $this->view('users/login', $data);
     }
 }
