@@ -15,10 +15,26 @@
                         <a class="nav-link" href="<?=URL?>/pages/about" data-tooltip="tooltip" title="About Us">About Us</a>
                     </li>
                 </ul>
+
+                <?php
+                if (isset($_SESSION['user_id'])) {
+                ?>
+                
+                <span class="navbar-text">
+                    <p>Hello, <?=$_SESSION['user_name']?></p>
+                    <a class="btn btn-sm btn-danger" href="<?= URL ?>/users/quit">Quit</a>
+                </span>
+
+                <?php
+                } else {
+                ?>
                 <span class="navbar-text">
                     <a class="btn btn-info" href="<?=URL?>/users/register" data-tooltip="tooltip" title="Don't have an account? Register">Register</a>
                     <a class="btn btn-info" href="<?=URL?>/users/login" data-tooltip="tooltip" title="Already have an account? Login">Login</a>
                 </span>
+                <?php
+                }
+                ?>
             </div>
         </nav>
     </div>

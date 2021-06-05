@@ -6,8 +6,7 @@ class Users extends Controller
         $this->userModel = $this->model('User');
     }
 
-    public function register()
-    {
+    public function register() {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         if (isset($form)) {
@@ -95,8 +94,7 @@ class Users extends Controller
         $this->view('users/register', $data);
     }
 
-    public function login()
-    {
+    public function login() {
         $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
         if (isset($form)) {
@@ -124,8 +122,7 @@ class Users extends Controller
                     $user = $this->userModel->validateLogin($data);
 
                     if ($user) {
-                        echo "OK";
-                        var_dump($user);
+                        $this->createUserSession($user);
                     } else
                         echo "Invalid email or password.";
                 }
@@ -138,5 +135,21 @@ class Users extends Controller
         }
 
         $this->view('users/login', $data);
+    }
+
+    private function createUserSession($user) {
+        $_SESSION['user_id']    = $user->id;
+        $_SESSION['user_name']  = $user->name;
+        $_SESSION['user_email'] = $user->email;
+    }
+
+    public function quit() {
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_name']);
+        unset($_SESSION['user_email']);
+
+        session_destroy();
+
+        header('Location: ' . URL . '/pages/index');
     }
 }
