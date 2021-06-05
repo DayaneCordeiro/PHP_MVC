@@ -122,7 +122,12 @@ class Users extends Controller
                     $data['email_error'] = 'Invalid e-mail.';
                 } else {
                     // EVERYTHING OK
-                    echo 'login';
+                    $validateLogin = $this->userModel->validateLogin($data);
+
+                    if ($validateLogin)
+                        echo "OK";
+                    else
+                        echo "Invalid email or password.";
                 }
             }
 

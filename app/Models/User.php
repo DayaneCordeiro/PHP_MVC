@@ -30,4 +30,20 @@ class User {
         else
             return true;
     }
+
+    public function validateLogin($data) {
+        $this->conn->query("SELECT email, password FROM users WHERE email = ?");
+
+        $this->conn->bind(1, $data['email']);
+
+        if ($this->conn->fetch()) {
+            $result = $this->conn->fetch();
+
+            if (password_verify($data['password'], $result->password)) {
+                return true;
+            }
+        }
+            
+        return false;
+    }
 }
