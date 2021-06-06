@@ -1,4 +1,5 @@
 <div class="container py-5">
+<?= Session::alert('posts') ?>
     <div class="card">
         <div class="card-header bg-secondary text-white">
             POSTS

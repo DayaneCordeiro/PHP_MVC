@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="title">Text: <sup class="text-danger">*</sup></label>
-                    <textarea class="form-control <?=(isset($data["text_error"])) ? 'is-invalid' : '' ?>" name="text" rows="3">
+                    <textarea class="form-control <?=(isset($data["text_error"])) ? 'is-invalid' : '' ?>" name="text" rows="5">
                         <?= $data['text'] ?>
                     </textarea>
                     <div class="invalid-feedback">

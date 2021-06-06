@@ -5,6 +5,8 @@ class Posts extends Controller {
         if (!Session::isLogged()) {
             Url::redirect('users/login');
         }
+
+        $this->postsModel = $this->model('Post');
     }
 
     public function index() {
@@ -32,7 +34,12 @@ class Posts extends Controller {
                     $data['text_error'] = 'Text is required.';
             } else {
                     // EVERYTHING OK
-                    echo "OK";                
+                    if ($this->postsModel->store($data)) {
+                        Session::alert("posts", "Post created successfully.");
+
+                        Url::redirect('posts');
+                    } else
+                        throw new Exception("Error creating post.");                
             }
         } else {
             $data = array(
