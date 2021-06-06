@@ -76,7 +76,7 @@ class Users extends Controller
                                 if ($this->userModel->store($data)) {
                                     Session::alert("user", "User registered successfully.");
 
-                                    header('Location: ' . URL);
+                                    Url::redirect('users/login');
                                 } else
                                     throw new Exception("Error registering user.");
                             }
@@ -143,6 +143,8 @@ class Users extends Controller
         $_SESSION['user_id']    = $user->id;
         $_SESSION['user_name']  = $user->name;
         $_SESSION['user_email'] = $user->email;
+
+        Url::redirect('pages/home');
     }
 
     public function quit() {
@@ -152,6 +154,6 @@ class Users extends Controller
 
         session_destroy();
 
-        //header('Location: ' . URL . '/pages/index');
+        Url::redirect('users/login');
     }
 }
