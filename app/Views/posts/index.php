@@ -12,17 +12,14 @@
             foreach($data['posts'] as $post) {
             ?>
 
-                <div class="card my-5">
-                    <div class="card-header">
-                        <h3><?= $post->title ?></h3>
-                    </div>
-                    <div class="card-body">
-                        <p class="card-text"><?= $post->text ?></p>
-                        <a href="#" class="btn btn-primary float-right">Read more</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        <small> Created by: <?= $post->name ?> <br> <?= date('Y/m/d H:i', strtotime($post->date_post)) ?></small>
-                    </div>
+                <div class="jumbotron">
+                    <h3 class="display-4"><?= $post->title ?></h3>
+                    <small>Created by: <?= $post->name ?> <br> <?= Validation::convertDate($post->date) ?></small>
+                    <hr class="my-4">
+                    <p><?= $post->text ?></p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="<?= URL . "/posts/show/" . $post->id_post ?>" role="button">Read more</a>
+                    </p>
                 </div>
 
             <?php

@@ -29,8 +29,26 @@ class Post {
                             users.date AS date_users
                             FROM posts
                             INNER JOIN users ON posts.id_user = users.id
+                            ORDER BY date_post DESC
                         ");
 
         return $this->conn->fetchAll();
+    }
+
+    public function readById($id) {
+        $this->conn->query("
+                            SELECT *,
+                            posts.id   AS id_post,
+                            posts.date AS date_post,
+                            users.id   AS id_user,
+                            users.date AS date_users
+                            FROM posts
+                            INNER JOIN users ON posts.id_user = users.id
+                            WHERE posts.id = ?
+                        ");
+
+        $this->conn->bind(1, $id);
+
+        return $this->conn->fetch();
     }
 }

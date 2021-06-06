@@ -54,4 +54,14 @@ class Posts extends Controller {
 
         $this->view('posts/register', $data);
     }
+
+    public function show($id) {
+        $post = $this->postsModel->readById($id);
+
+        $data = array(
+            'post' => $post
+        );
+
+        $this->view('posts/show', $data);
+    }
 }
