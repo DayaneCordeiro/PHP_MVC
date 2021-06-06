@@ -144,7 +144,7 @@ class Users extends Controller
         $_SESSION['user_name']  = $user->name;
         $_SESSION['user_email'] = $user->email;
 
-        Url::redirect('pages/home');
+        Url::redirect('posts');
     }
 
     public function quit() {

@@ -1,6 +1,6 @@
 <div class="container py-5">
     <div class="card">
-        <div class="card-header bg-info text-white">
+        <div class="card-header bg-secondary text-white">
             POSTS
             <div class="float-right">
                 <a href="<?= URL ?>/posts/register" class="btn btn-success">Create post</a>
