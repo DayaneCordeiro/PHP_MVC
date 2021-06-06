@@ -1,3 +1,4 @@
+<?= Session::alert('user') ?>
 <div class="container p-5">
     <div class="row">
         <div class="col-md-8">

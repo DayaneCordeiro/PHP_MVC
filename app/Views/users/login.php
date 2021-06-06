@@ -4,6 +4,7 @@
             <h2>Login</h2>
         </div>
         <div class="card-body">
+            <?= Session::alert("user") ?>
             <p class="card-text"><small>Fill out the form below to login.</small></p>
 
             <form name="form_login" method="POST" action="<?= URL ?>/users/login" class="mt-4">

@@ -73,9 +73,11 @@ class Users extends Controller
                             } else {
                                 $data['password'] = password_hash($form['password'], PASSWORD_DEFAULT);
                                 // EVERYTHING OK
-                                if ($this->userModel->store($data))
-                                    echo "User registered successfully.";
-                                else
+                                if ($this->userModel->store($data)) {
+                                    Session::alert("user", "User registered successfully.");
+
+                                    header('Location: ' . URL);
+                                } else
                                     throw new Exception("Error registering user.");
                             }
                         }
@@ -124,7 +126,7 @@ class Users extends Controller
                     if ($user) {
                         $this->createUserSession($user);
                     } else
-                        echo "Invalid email or password.";
+                        Session::alert("user", "Invalid email or password.", "alert alert-danger");
                 }
             }
         } else {
@@ -150,6 +152,6 @@ class Users extends Controller
 
         session_destroy();
 
-        header('Location: ' . URL . '/pages/index');
+        //header('Location: ' . URL . '/pages/index');
     }
 }
