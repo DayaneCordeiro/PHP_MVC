@@ -19,4 +19,18 @@ class Post {
         else
             return false;
     }
+
+    public function read() {
+        $this->conn->query("
+                            SELECT *,
+                            posts.id   AS id_post,
+                            posts.date AS date_post,
+                            users.id   AS id_user,
+                            users.date AS date_users
+                            FROM posts
+                            INNER JOIN users ON posts.id_user = users.id
+                        ");
+
+        return $this->conn->fetchAll();
+    }
 }
