@@ -64,4 +64,44 @@ class Posts extends Controller {
 
         $this->view('posts/show', $data);
     }
+
+    public function update($id) {
+        $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        if (isset($form)) {
+            $data = array(
+                "id"    => trim($id),
+                "title" => trim($form['title']),
+                "text"  => trim(ltrim($form['text']))
+            );
+
+            if (in_array("", $form)) {
+                // VALIDATING TITLE
+                if (empty($form['title']))
+                    $data['title_error'] = 'Title is required.';
+
+                // VALIDATING TEXT
+                if (empty($form['text']))
+                    $data['text_error'] = 'Text is required.';
+            } else {
+                    // EVERYTHING OK
+                    if ($this->postsModel->update($data)) {
+                        Session::alert("posts", "Post updated successfully.");
+
+                        Url::redirect('posts');
+                    } else
+                        throw new Exception("Error updating post.");                
+            }
+        } else {
+            $post = $this->postsModel->readById($id);
+
+            $data = array(
+                "id_post"    => $post->id_post,
+                "title" => $post->title,
+                "text"  => $post->text
+            );
+        }
+
+        $this->view('posts/update', $data);
+    }
 }

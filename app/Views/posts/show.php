@@ -11,5 +11,15 @@
         <small>Created by: <?= $data['post']->name ?> <br> <?= Validation::convertDate($data['post']->date) ?></small>
         <hr class="my-4">
         <p><?= $data['post']->text ?></p>
+
+        <?php
+        if ($data['post']->id_user == $_SESSION['user_id']) {
+        ?>
+
+        <a href="<?= URL . '/posts/update/' . $data['post']->id_post ?>" class="btn btn-sm btn-warning">Edit</a>
+
+        <?php
+        }
+        ?>
     </div>
 </div>

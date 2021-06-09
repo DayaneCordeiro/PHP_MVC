@@ -29,7 +29,7 @@ class Post {
                             users.date AS date_users
                             FROM posts
                             INNER JOIN users ON posts.id_user = users.id
-                            ORDER BY date_post DESC
+                            ORDER BY id_post DESC
                         ");
 
         return $this->conn->fetchAll();
@@ -50,5 +50,18 @@ class Post {
         $this->conn->bind(1, $id);
 
         return $this->conn->fetch();
+    }
+
+    public function update($data) {
+        $this->conn->query("UPDATE posts SET title = ?, text = ? WHERE id = ?");
+
+        $this->conn->bind(1, $data['title']);
+        $this->conn->bind(2, $data['text']);
+        $this->conn->bind(3, $data['id']);
+
+        if ($this->conn->execute())
+            return true;
+        else
+            return false;
     }
 }
