@@ -95,6 +95,12 @@ class Posts extends Controller {
         } else {
             $post = $this->postsModel->readById($id);
 
+            if ($post->id_user != $_SESSION['user_id']) {
+                Session::alert("posts", "Access denied.", "alert alert-danger");
+
+                Url::redirect('posts');
+            }
+
             $data = array(
                 "id_post"    => $post->id_post,
                 "title" => $post->title,
