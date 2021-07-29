@@ -16,7 +16,16 @@
         if ($data['post']->id_user == $_SESSION['user_id']) {
         ?>
 
-        <a href="<?= URL . '/posts/update/' . $data['post']->id_post ?>" class="btn btn-sm btn-warning">Edit</a>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <a href="<?= URL . '/posts/update/' . $data['post']->id_post ?>" class="btn btn-sm btn-warning">Edit</a>
+            </li>
+            <li class="list-inline-item">
+                <form action="<?= URL . '/posts/delete/' . $data['post']->id_post ?>" method="POST">
+                    <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                </form>
+            </li>
+        </ul>
 
         <?php
         }

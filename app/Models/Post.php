@@ -64,4 +64,14 @@ class Post {
         else
             return false;
     }
+
+    public function delete($id) {
+        $this->conn->query("DELETE FROM posts WHERE id = ?");
+
+        $this->conn->bind(1, $id);
+        if ($this->conn->execute())
+            return true;
+        else
+            return false;
+    }
 }

@@ -26,8 +26,6 @@ class Posts extends Controller {
                 "text"  => trim(ltrim($form['text']))
             );
 
-            var_dump($form);
-
             if (in_array("", $form)) {
                 // VALIDATING TITLE
                 if (empty($form['title']))
@@ -109,5 +107,39 @@ class Posts extends Controller {
         }
 
         $this->view('posts/update', $data);
+    }
+
+    public function delete($id) {
+        if (!$this->checkAuthorization($id)) {
+            $id     = filter_var($id, FILTER_VALIDATE_INT);
+            $method = filter_input(INPUT_SERVER, 'REQUEST_METHOD', FILTER_SANITIZE_STRING);
+
+            if ($id && $method == "POST") {
+                if ($this->postsModel->delete($id)) {
+                    Session::alert("posts", "Post deleted successfully.");
+    
+                    Url::redirect('posts');
+                } else
+                    throw new Exception("Error deleting post.");
+            } else {
+                Session::alert("posts", "Access denied.", "alert alert-danger");
+
+                Url::redirect('posts');
+            }         
+        } else {
+            Session::alert("posts", "Access denied to delete this post.", "alert alert-danger");
+
+            Url::redirect('posts');
+        }
+        
+    }
+
+    private function checkAuthorization($id) {
+        $post = $this->postsModel->readById($id);
+
+        if ($post->id_user != $_SESSION['user_id'])
+            return true;
+        else
+            return false;
     }
 }
