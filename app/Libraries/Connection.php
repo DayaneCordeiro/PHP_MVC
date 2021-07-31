@@ -1,11 +1,11 @@
 <?php
 
 class Connection {
-    private $host     = 'localhost';
-    private $user     = 'root';
-    private $password = '';
-    private $database = 'php_mvc';
-    private $port     = '3306';
+    private $host     = DB['HOST'];
+    private $user     = DB['USER'];
+    private $password = DB['PASSWORD'];
+    private $database = DB['DATABASE'];
+    private $port     = DB['GATE'];
     private $dbh;
     private $stmt;
 
