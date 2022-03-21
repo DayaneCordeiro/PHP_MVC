@@ -1,6 +1,9 @@
 <?php
+
+include  './../app/config.php';
 include './../app/Libraries/Route.php';
 include './../app/Libraries/Controller.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -9,11 +12,17 @@ include './../app/Libraries/Controller.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= APP_NAME ?></title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= URL ?>/public/css/styles.css" rel="stylesheet">
 </head>
 <body>
     <?php
     $routes = new Route();
     ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= URL ?>/public/js/scripts.js"></script>
 </body>
 </html>
