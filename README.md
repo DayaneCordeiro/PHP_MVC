@@ -54,11 +54,7 @@ provided by PHP.
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) - v5.1
 
 ## :white_check_mark: Requirements
 
